@@ -53,7 +53,7 @@ wino_te = wino[-wine_index, ]
 model1 = train(lprice ~ .,
   data = wino_tr,
   method = "lm",
-  trControl = trainControl(method = "boot")
+  trControl = trainControl(number = 1)
 )
 
 model1
