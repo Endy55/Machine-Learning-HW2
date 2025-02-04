@@ -1,0 +1,75 @@
+**Abstract:**
+
+This is a technical blog post of **both** an HTML file *and* [.qmd file](src/wine_features.qmd) hosted on GitHub pages.
+
+# Setup
+
+**Step Up Code:**
+```{r}
+library(tidyverse)
+library(caret)
+library(fastDummies)
+wine <- readRDS(gzcon(url("https://github.com/cd-public/D505/raw/master/dat/wine.rds")))
+```
+
+**Explanation:**
+
+> <span style="color:red;font-weight:bold">TODO</span>: *First, the tidyverse is loaded in order to gain access to plot making tools like ggplot. Then, the caret package is loaded to be able to split data and be able to create predictive models. Then, the fastDummies package is loaded to be able to create dummy variables more efficiently when creating predictive models. Then, the wine data set is read through the github link*
+
+# Feature Engineering
+
+We begin by engineering an number of features.
+
+1. Create a total of 10 features (including points). 
+2. Remove all rows with a missing value. 
+3. Ensure only log(price) and engineering features are the only columns that remain in the `wino` dataframe.
+
+```{r}
+wino <- wine %>% 
+  mutate(lprice=log(price),
+         country = fct_lump(country, 3),
+         province = fct_lump(province, 3),
+         taster_name = fct_lump(taster_name, 2)) %>%
+  select(lprice, points, country, province, taster_name) %>%
+  drop_na(.)
+
+  # engineer features here
+```
+
+# Caret
+
+We now use a train/test split to evaluate the features.
+
+1. Use the Caret library to partition the wino dataframe into an 80/20 split. 
+2. Run a linear regression with bootstrap resampling. 
+3. Report RMSE on the test partition of the data.
+
+```{r}
+# TODO: hint: Check the slides.
+wine_index = createDataPartition(wino$lprice, p = 0.8, list = FALSE)
+wino_tr = wino[wine_index, ]
+wino_te = wino[-wine_index, ]
+
+model1 = train(lprice ~ .,
+  data = wino_tr,
+  method = "lm",
+  trControl = trainControl(method = "boot")
+)
+
+model1
+```
+
+```{r}
+print(model1$resample)
+```
+
+
+# Variable selection
+
+We now graph the importance of your 10 features.
+
+```{r}
+# TODO: hint: Check the slides.
+plot(varImp(model1, scale = TRUE))
+
+```
