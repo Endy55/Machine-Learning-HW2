@@ -154,7 +154,7 @@ The following object is masked from 'package:purrr':
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">=</span> <span class="fu">train</span>(lprice <span class="sc">~</span> .,</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> wino_tr,</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">"boot"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="at">number =</span> <span class="dv">1</span>)</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -165,12 +165,12 @@ The following object is masked from 'package:purrr':
     4 predictor
 
 No pre-processing
-Resampling: Bootstrapped (25 reps) 
-Summary of sample sizes: 71603, 71603, 71603, 71603, 71603, 71603, ... 
+Resampling: Bootstrapped (1 reps) 
+Summary of sample sizes: 71603 
 Resampling results:
 
   RMSE       Rsquared   MAE      
-  0.4977927  0.4265137  0.3885493
+  0.4963524  0.4254572  0.3891585
 
 Tuning parameter 'intercept' was held constant at a value of TRUE</code></pre>
 </div>
@@ -178,32 +178,8 @@ Tuning parameter 'intercept' was held constant at a value of TRUE</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model1<span class="sc">$</span>resample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        RMSE  Rsquared       MAE   Resample
-1  0.4961584 0.4294818 0.3877339 Resample01
-2  0.4968303 0.4279048 0.3886577 Resample02
-3  0.4975370 0.4243893 0.3875005 Resample03
-4  0.4962135 0.4291456 0.3880028 Resample04
-5  0.5000142 0.4258131 0.3893091 Resample05
-6  0.4963217 0.4302596 0.3877585 Resample06
-7  0.5000275 0.4233273 0.3897010 Resample07
-8  0.4946234 0.4268110 0.3855588 Resample08
-9  0.4991099 0.4258418 0.3892034 Resample09
-10 0.4981106 0.4287180 0.3881823 Resample10
-11 0.5021779 0.4176631 0.3916898 Resample11
-12 0.4987151 0.4272522 0.3893861 Resample12
-13 0.4980678 0.4265516 0.3884567 Resample13
-14 0.5015023 0.4243052 0.3901697 Resample14
-15 0.4954218 0.4284590 0.3857775 Resample15
-16 0.4944098 0.4356655 0.3874258 Resample16
-17 0.4999173 0.4230677 0.3910142 Resample17
-18 0.5001902 0.4245840 0.3900126 Resample18
-19 0.4982920 0.4252614 0.3900364 Resample19
-20 0.4993352 0.4232008 0.3889672 Resample20
-21 0.4935059 0.4297340 0.3848227 Resample21
-22 0.4958924 0.4227809 0.3881379 Resample22
-23 0.4957513 0.4265662 0.3879917 Resample23
-24 0.4978047 0.4290262 0.3890513 Resample24
-25 0.4988883 0.4270328 0.3891844 Resample25</code></pre>
+<pre><code>       RMSE  Rsquared       MAE  Resample
+1 0.4963524 0.4254572 0.3891585 Resample1</code></pre>
 </div>
 </div>
 </section>
